@@ -1,4 +1,4 @@
-from blog.models import Quotes
+from app.models import Quotes
 from config import Config
 import urllib.request,json
 quotes_url = Config.QUOTES_URL
