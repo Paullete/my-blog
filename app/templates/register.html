@@ -1,72 +1,61 @@
-{% extends "layouts.html" %}
+{% extends 'base.html' %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
+<div class="cont">
+<!--  login-->
+  <div class="form sign-in">
+    <form action="{{ url_for('auth.login') }}" method="POST">
+    <h2>Welcome back,</h2>
+    <label>
+      <span>Email</span>
+      <input type="email" id="email1" name="email"/>
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" id="password" name="password"/>
+    </label>
+    <p class="forgot-pass">Forgot password?</p>
+    <button type="submit" class="submit">Sign In</button>
 
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                    {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirm_password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.confirm_password(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </form>
+      </form>
+  </div>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text m--up">
+        <h2>New here?</h2>
+        <p>Sign up and be part of a creative world!</p>
+      </div>
+      <div class="img__text m--in">
+        <h2>One of us?</h2>
+        <p>Already have an account? Just sign in!</p>
+      </div>
+      <div class="img__btn">
+        <span class="m--up">Sign Up</span>
+        <span class="m--in">Sign In</span>
+      </div>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-        </small>
+    <!-- SIGN UP -->
+    <div class="form sign-up">
+      <form action="{{ url_for('auth.signup') }}" method="POST">
+      <h2>Time to feel like home,</h2>
+      <label>
+        <span>Name</span>
+        <input type="text" id="username" name="username"/>
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" id="email" name="email"/>
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" id="password1" name="password1"/>
+      </label>
+         <label>
+        <span>Confirm Password</span>
+        <input type="password" id="password2" name="password2"/>
+      </label>
+      <button type="submit" class="submit">Sign Up</button>
+    </form>
     </div>
-{% endblock content %}
+  </div>
+</div>
+{% endblock%}

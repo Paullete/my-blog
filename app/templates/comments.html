@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% from 'comment_display_macro.html' import display_comments%}
+{% block content %}
+   <div class="container">
+        <h3>Comments</h3>
+        <div class="row">
+            <div class="col-md-6">
+                 <form method="POST">
+                      <div class="mb-3">
+                        <label for="nickname" class="form-label"></label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Your nickname">
+                      </div>
+                     <div class="mb-3">
+                        <label for="content" class="form-label"></label>
+                        <input type="text" class="form-control" id="content" name="content" placeholder="Comment">
+                      </div>
+                      <a href="/comments" class="btn btn-info">Comment</a>
+                 </form>
+            </div>
+             <div class="col-md-6">
+                <div>{{ display_comments(comments) }}</div>
+             </div>
+        </div>
+   </div>
+{% endblock %}

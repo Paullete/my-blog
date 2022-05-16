@@ -1,0 +1,5 @@
+{% extends 'base.html'%}
+{% from 'blog_display_macro.html' import display_blogs%}
+{% block content %}
+<div>{{ display_blogs(blogs) }}</div>
+{% endblock %}
