@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/register.css')}}">
+{% endblock %}
 {% block content %}
+<div class="registration">
 <div class="cont">
 <!--  login-->
   <div class="form sign-in">
     <form action="{{ url_for('auth.login') }}" method="POST">
     <h2>Welcome back,</h2>
     <label>
-      <span>Email</span>
+      <span class="spanlabel">Email</span>
       <input type="email" id="email1" name="email"/>
     </label>
     <label>
-      <span>Password</span>
+      <span class="spanlabel">Password</span>
       <input type="password" id="password" name="password"/>
     </label>
-    <p class="forgot-pass">Forgot password?</p>
+    <p class="forgot-pass spanlabel">Forgot password?</p>
     <button type="submit" class="submit">Sign In</button>
 
       </form>
@@ -22,11 +27,11 @@
     <div class="img">
       <div class="img__text m--up">
         <h2>New here?</h2>
-        <p>Sign up and be part of a creative world!</p>
+        <p>Sign up to join our Blogumminity!</p>
       </div>
       <div class="img__text m--in">
         <h2>One of us?</h2>
-        <p>Already have an account? Just sign in!</p>
+        <p>Already have an account?Sign in</p>
       </div>
       <div class="img__btn">
         <span class="m--up">Sign Up</span>
@@ -36,26 +41,27 @@
     <!-- SIGN UP -->
     <div class="form sign-up">
       <form action="{{ url_for('auth.signup') }}" method="POST">
-      <h2>Time to feel like home,</h2>
+      <h2>Join Blog-It!</h2>
       <label>
-        <span>Name</span>
+        <span class="spanlabel">Name</span>
         <input type="text" id="username" name="username"/>
       </label>
       <label>
-        <span>Email</span>
+        <span class="spanlabel">Email</span>
         <input type="email" id="email" name="email"/>
       </label>
       <label>
-        <span>Password</span>
+        <span class="spanlabel">Password</span>
         <input type="password" id="password1" name="password1"/>
       </label>
          <label>
-        <span>Confirm Password</span>
+        <span class="spanlabel">Confirm Password</span>
         <input type="password" id="password2" name="password2"/>
       </label>
       <button type="submit" class="submit">Sign Up</button>
     </form>
     </div>
   </div>
+</div>
 </div>
 {% endblock%}
