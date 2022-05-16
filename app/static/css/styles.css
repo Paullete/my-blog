@@ -1,4 +1,28 @@
-*, *:before, *:after {
+body {
+  background: #95A5A7;
+}
+
+/* navbar */
+.navbar {
+  background: #d5dfe1 !important;
+}
+
+.nav-link:hover {
+  background: #d5dfe1 !important;
+  border-radius: 0.5em;
+  box-shadow: inset 9.91px 9.91px 15px #C2CBCD, inset -9.91px -9.91px 15px #E8F3F5;
+}
+
+
+
+
+
+
+
+
+
+
+/* *, *:before, *:after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -236,4 +260,4 @@
   }
   .cont.s--signup .sign-up {
     transform: translate3d(0, 0, 0);
-  }
+  } */
