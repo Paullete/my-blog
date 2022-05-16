@@ -2,12 +2,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from config import config_options
 
 db = SQLAlchemy()
 DB_NAME = 'site.db'
 
 
-def create_app():
+def create_app(config_name):
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'potestuff'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
@@ -33,6 +34,9 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+
+    # Creating the app configurations
+    app.config.from_object(config_options[config_name])
 
     return app
 

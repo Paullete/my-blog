@@ -60,34 +60,49 @@ def delete_blog(blog_id):
     return redirect(url_for('main.blogs'))
 
 
-@main.route('/comment', methods=['POST', 'GET'])
+@main.route('/comment/<blog_id>', methods=['POST', 'GET'])
 @login_required
-def comment():
+def new_comment(blog_id):
+    blog = Blog.query.get(blog_id)
+    comments = Comment.query.filter_by(blog_id=blog_id).all()
+    comment_count = len(comments)
     if request.method == 'POST':
         nickname = request.form.get('nickname')
         content = request.form.get('content')
-        new_comment = Comment(nickname=nickname, content=content)
-        db.session.add(new_comment)
+        new_comment_obj = Comment(nickname=nickname, content=content, blog_id=blog_id)
+        db.session.add(new_comment_obj)
         db.session.commit()
         print(new_comment)
-        return redirect(url_for('main.comments'))
+        return redirect(url_for('main.new_comment', blog_id=blog_id))
 
-    return render_template('comments.html')
-
-
-@main.route('/comments')
-@login_required
-def comments():
-    comments = Comment.query.all()
-    print(comments)
-    return render_template('comments.html', comments=comments)
+    return render_template('comments.html', comments=comments, blog=blog, comment_count=comment_count)
 
 
 @main.route('/remove/<int:comment_id>', methods=['POST', 'GET'])
 @login_required
 def delete_comment(comment_id):
+    # blog = Blog.query.get(blog_id)
     comment = Comment.query.get(comment_id)
     db.session.delete(comment)
     db.session.commit()
     flash('Comment has been deleted successfully', category='success')
-    return redirect(url_for('main.comments'))
+    # return render_template('comments.html')
+    return redirect(url_for('main.blogs'))
+
+
+@main.route('/edit/<int:blog_id>', methods=['POST', 'GET'])
+@login_required
+def edit_blog(blog_id):
+    blog = Blog.query.get(blog_id)
+    if request.method == 'POST':
+        # collect blog details from the form submitted by the user
+        blog.author = request.form.get('author')
+        blog.title = request.form.get('title')
+        blog.content = request.form.get('content')
+
+        # save the new blog obj in our db
+        db.session.add(blog)
+        db.session.commit()
+        flash('Post has been updated', 'success')
+        return redirect(url_for('main.blogs'))
+    return render_template('blog_edit.html')

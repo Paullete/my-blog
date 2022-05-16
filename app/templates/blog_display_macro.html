@@ -3,7 +3,7 @@
 
 <div class="blog-container">
     <div class="container">
-        <h1>Blogs will be displayed here</h1>
+        <h1>View Blogs</h1>
         <div class="row">
             <div class="col-md-12">
                  {% if blogs %}
@@ -16,10 +16,10 @@
       <p class="card-text">Posted on {{blog.date.strftime('%Y-%m-%d')}}</p>
       <div class="footer">
           <div class="comment">
-    <a href="/comment" class="btn btn-primary">Comment</a>
+    <a href="/comment/{{blog.id}}" class="btn btn-primary">Comment</a>
               </div>
           <div class="edit">
-              <a href="#" class="btn btn-primary">Edit</a>
+              <a href="/edit/{{blog.id}}" class="btn btn-primary">Edit</a>
               <a href="/delete/{{blog.id}}" class="btn btn-primary">Delete</a>
           </div>
           </div>
