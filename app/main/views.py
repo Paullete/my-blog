@@ -1,14 +1,16 @@
 from . import main
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from ..models import Blog
+from ..models import Blog, Comment
 from app import db
+from ..request import get_quote
 
 
 @main.route('/')
 @login_required
 def home():
-    return render_template('home.html', user=current_user)
+    quote = get_quote()
+    return render_template('home.html', user=current_user, quote=quote)
 
 
 @main.route('/quote')
@@ -47,7 +49,45 @@ def blogs():
 @login_required
 def delete_blog(blog_id):
     blog = Blog.query.get(blog_id)
-    db.session.delete(blog)
-    db.session.commit()
-    flash('Your post has been deleted successfully', category='success')
+    current_user_id = current_user.id
+    if current_user_id != 1:
+        flash('Only the admin can delete it!!!', 'error')
+    else:
+        if blog:
+            db.session.delete(blog)
+            db.session.commit()
+            flash('Your post has been deleted successfully', category='success')
     return redirect(url_for('main.blogs'))
+
+
+@main.route('/comment', methods=['POST', 'GET'])
+@login_required
+def comment():
+    if request.method == 'POST':
+        nickname = request.form.get('nickname')
+        content = request.form.get('content')
+        new_comment = Comment(nickname=nickname, content=content)
+        db.session.add(new_comment)
+        db.session.commit()
+        print(new_comment)
+        return redirect(url_for('main.comments'))
+
+    return render_template('comments.html')
+
+
+@main.route('/comments')
+@login_required
+def comments():
+    comments = Comment.query.all()
+    print(comments)
+    return render_template('comments.html', comments=comments)
+
+
+@main.route('/remove/<int:comment_id>', methods=['POST', 'GET'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    flash('Comment has been deleted successfully', category='success')
+    return redirect(url_for('main.comments'))
