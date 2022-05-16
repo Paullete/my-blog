@@ -4,23 +4,27 @@
     <div class="container">
         <div class="row">
 <!--            random quote-->
-            <div class="col-md-6">
-                <div class="card">
-  <div class="card-header">
-    Quote
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{quote.quote}}</p>
-      <footer class="blockquote-footer"><cite title="Source Title">{{quote.author}}</cite></footer>
-    </blockquote>
-  </div>
-</div>
+            <div class="col-md-6 quote-container">
+                <div class="card quote-card">
+                  <div class="card-header">
+                    Quote
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <p>{{quote.quote}}</p>
+                      <footer class="blockquote-footer"><cite title="Source Title">{{quote.author}}</cite></footer>
+                    </blockquote>
+                  </div>
+                </div>
             </div>
 <!--            post blog-->
-            <div class="col-md-6">
-                <h1>Blogs</h1>
-               <a href="/blog"><button class="btn btn-info btn1">Blog</button></a>
+            <div class="col-md-6 blog-container">
+              <div class="blog-cont">
+                <h1>Blog-It!</h1>
+                <p>A space to publish your thoughts</p>
+                <p>Your thoughts deserve a platform,we got you!</p>
+               <a href="/blog"><button class="btn btn-secondary btn1">Blog</button></a>
+              </div>
             </div>
         </div>
     </div>

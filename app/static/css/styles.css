@@ -1,5 +1,6 @@
 body {
-  background: #95A5A7;
+  /* background: #95A5A7; */
+  background-image: url("../pexels-photo-7296698.jpeg");
 }
 
 /* navbar */
@@ -11,6 +12,37 @@ body {
   background: #d5dfe1 !important;
   border-radius: 0.5em;
   box-shadow: inset 9.91px 9.91px 15px #C2CBCD, inset -9.91px -9.91px 15px #E8F3F5;
+}
+.blog-container {
+  text-align: center;
+}
+.quote-card {
+ margin-top: 13em;
+ background: #d5dfe1;
+}
+
+.quote-container {
+  
+  background: #5EBEC4;
+  background-position: center;
+  background-size: cover;
+  height: 92vh;
+}
+
+.blog-container {
+  
+  background: #FDF5DF;
+  background-position: center;
+  background-size: cover;
+  height: 92vh;
+}
+
+.blog-cont {
+  margin-top: 13em;
+}
+
+.blog-cont p {
+  font-size: larger;
 }
 
 
