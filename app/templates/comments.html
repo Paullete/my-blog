@@ -2,10 +2,10 @@
 {% from 'comment_display_macro.html' import display_comments%}
 {% block content %}
    <div class="container">
-        <h3>Comments</h3>
         <div class="row">
             <div class="col-md-6">
-                 <form method="POST">
+               <h3 class="b-header">Comments</h3>
+                 <form class="blog-form" method="POST">
                       <div class="mb-3">
                         <label for="nickname" class="form-label"></label>
                         <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Your nickname">
@@ -15,8 +15,8 @@
                         <input type="text" class="form-control" id="content" name="content" placeholder="Comment">
                       </div>
                      <div class="footer">
-                         <a href="/blogs" class="btn btn-primary">Back</a>
-                          <button type="submit" class="submit">Submit comment</button>
+                         <a href="/blogs" class="btn comment-button"><i class="bi bi-arrow-left"></i></a>
+                          <button type="submit" class="btn submit1">Comment</button>
                      </div>
                  </form>
             </div>

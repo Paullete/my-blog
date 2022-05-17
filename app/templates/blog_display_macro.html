@@ -1,26 +1,27 @@
 {% extends 'base.html' %}
 {% macro display_blogs(blogs) %}
 
-<div class="blog-container">
-    <div class="container">
-        <h1>View Blogs</h1>
+<div class="blogs-container">
+    <div class="container-fluid">
+        <h1 class="b-header">Blogs</h1>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                  {% if blogs %}
                 {% for blog in blogs %}
-            <div class="card">
+            <div class="card b-card">
   <h5 class="card-header">{{blog.title}}</h5>
   <div class="card-body">
-       <p class="card-text">Author: {{blog.author}}</p>
     <p class="card-text">{{blog.content}}</p>
-      <p class="card-text">Posted on {{blog.date.strftime('%Y-%m-%d')}}</p>
+    <p class="card-text"><span class="span1">By:</span> {{blog.author}}</p>
+      <p class="card-text"><span class="span1">{{blog.date.strftime('%Y-%m-%d')}}</span></p>
       <div class="footer">
-          <div class="comment">
-    <a href="/comment/{{blog.id}}" class="btn btn-primary">Comment</a>
+          <div class="comment-footer">
+                 <a href="/comment/{{blog.id}}"><button class="btn comment-button"><i class="bi bi-chat-quote"></i></button></a>
               </div>
           <div class="edit">
-              <a href="/edit/{{blog.id}}" class="btn btn-primary">Edit</a>
-              <a href="/delete/{{blog.id}}" class="btn btn-primary">Delete</a>
+            <a href="/edit/{{blog.id}}"><button class="btn comment-button green"><i class="bi bi-pencil-fill"></i></button></a>
+            <a href="/delete/{{blog.id}}"><button class="btn comment-button red"><i class="bi bi-trash-fill"></i></button></a>
           </div>
           </div>
   </div>
@@ -28,6 +29,7 @@
                  {% endfor %}
          {% endif %}
             </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 </div>
